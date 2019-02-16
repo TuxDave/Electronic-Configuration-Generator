@@ -81,12 +81,18 @@ def ces(z):
         return econf
 
 def nametoz(name):
-    with open('elementi.csv') as elementi2:
-        elementi2 = csv.reader(elementi2)
-        for zn in elementi2:
-            if name == zn[1]:
-                z = zn[0]
-        return z
+    while True:
+        try:
+            with open('elementi.csv') as elementi2:
+                elementi2 = csv.reader(elementi2)
+                for zn in elementi2:
+                    if name == zn[1]:
+                        z = zn[0]
+                return z
+        except UnboundLocalError:
+            print('Please, insert an existing atom...')
+            name = input('Insert the atom\'s name => ')
+            continue
 
 def ztoname(z):
     with open('elementi.csv') as elementi:
