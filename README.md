@@ -1,5 +1,5 @@
 # Electronic Configuration Generator
-A simple Python Script to create the electronic configuration of an atom.
+A simple Python Script to create the electronic configuration of any atom.
 ## Features:
  - [x] Creates at the moment the electron configurations of any element;
  - [x] It's possible to upgrade the database of the elements in case will be discovered new atoms in future.
