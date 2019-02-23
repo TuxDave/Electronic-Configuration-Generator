@@ -1,4 +1,5 @@
 import csv
+import time
 
 def cesc(z):
     with open('elementi.csv',encoding='ISO-8859-1',newline="") as elm:
@@ -95,13 +96,37 @@ def nametoz(name):
             continue
 
 def ztoname(z):
-    with open('elementi.csv') as elementi:
-        elementi = csv.reader(elementi)
-        for zn in elementi:
-            if zn[0] == str(z):
-                zn = zn[1]
-                name = str.upper(zn[0]) + zn[1:]
-    return name
+    while True:
+        try:
+            with open('elementi.csv') as elementi:
+                elementi = csv.reader(elementi)
+                for zn in elementi:
+                    if zn[0] == str(z):
+                        zn = zn[1]
+                        name = str.upper(zn[0]) + zn[1:]
+                        return name
+        except UnboundLocalError:
+            print(f"Your atom (z={z}) doesn't exist...")
+            z = input('Insert your atom => ')
+            continue
+
+def zncreation(tatomo):
+    while True:
+        if tatomo == 2:
+            try:
+                zn = int(input('Insert your atom => '))
+            except ValueError:
+                print('Please, insert a whole numeric value!')
+                continue
+            if int(zn) <= 0 or int(zn) >= 119:
+                print('Your atom doesn\'t exist, insert an existing atom [1-118]')
+                continue
+            else:
+                return zn
+        else:
+            zn = input('Insert your atom => ')
+            zn = nametoz(zn)
+            return zn
 
 def scelta(mod,atom):
     if int(mod) == 1: #configurazione elettronica estesa.
@@ -109,3 +134,13 @@ def scelta(mod,atom):
     elif int(mod) == 2: #Conifgurazione elettronica compatta.
         econf = cesc(atom)
     return econf
+
+def reboot():
+    print('Reboot in:\n3')
+    time.sleep(1)
+    print('\n2')
+    time.sleep(1)
+    print('\n1')
+    time.sleep(1)
+    print('\n\n\n\n\n')
+    return
